@@ -6,10 +6,22 @@ using System.Threading.Tasks;
 
 namespace ElectronicJournal
 {
-    class Teacher : Human
+    public class Teacher : Human
     {
-        public Teacher(string name, string secondName, string surname, DateTime birthDay, SexT sex) : base(name, secondName, surname, birthDay, sex)
+
+        List<Subject> teachedSubjects;
+
+        public Teacher(string name, string secondName, string surname, DateTime birthDay, SexT sex, List<Subject> subjects) : base(name, secondName, surname, birthDay, sex)
         {
+            this.teachedSubjects = subjects;
+        }
+
+        public List<Subject> TeachedSubjects
+        {
+            get
+            {
+                return teachedSubjects;
+            }
         }
     }
 }

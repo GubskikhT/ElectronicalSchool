@@ -23,6 +23,24 @@ namespace ElectronicJournal
             dm.addStudent(s1);
             dm.addStudent(s2);
             dm.printAllStudents();
+
+            Subject sub1 = new Subject("programming", 36, MarkType.Scored);
+            Subject sub2 = new Subject("maths", 48, MarkType.Scored);
+            Subject sub3 = new Subject("philosophy", 24, MarkType.Binary);
+            dm.Subjects.Add(sub1);
+
+            Teacher t1 = new Teacher("Artemey", "Ivanovich", "Sobolev", new DateTime(1990, 3, 15), Human.SexT.Male, new List<Subject>{sub1, sub2});
+            Teacher t2 = new Teacher("Galina", "Fedorovna", "Kuzmina", new DateTime(1955, 3, 25), Human.SexT.Female, new List<Subject>{sub3});
+            //dm.Teachers.Add(t1);
+            dm.Journal.AddEntry(t1, sub1, DateTime.Now, s1, new Mark(MarkType.Scored, 5));
+            dm.Journal.AddEntry(t1, sub1, DateTime.Now, s2, new Mark(MarkType.Scored, 4));
+            dm.Journal.AddEntry(t1, sub2, DateTime.Now, s1, new Mark(MarkType.Scored, 3));
+            dm.Journal.AddEntry(t1, sub2, DateTime.Now, s2, new Mark(MarkType.Scored, 3));
+            dm.Journal.AddEntry(t1, sub3, DateTime.Now, s1, new Mark(MarkType.Scored, 5));
+            dm.Journal.AddEntry(t2, sub3, DateTime.Now, s2, new Mark(MarkType.Scored, 2));
+
+            dm.Journal.GetEntries(s1).ForEach(e => Console.WriteLine(e));
+
         }
     }
 }
