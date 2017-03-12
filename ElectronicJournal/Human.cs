@@ -1,23 +1,33 @@
-﻿using System;
+﻿using ElectronicJournal.accounts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ElectronicJournal
 {
+    [DataContract]
     public class Human
     {
         public enum SexT { Male, Female}
 
+        private int id;
+        [DataMember]
         private string name;
+        [DataMember]
         private string secondName;
+        [DataMember]
         private string surname;
+        [DataMember]
         private DateTime birthDay;
+        [DataMember]
         private SexT sex;
 
         public Human(string name, string secondName, string surname, DateTime birthDay, SexT sex)
         {
+            this.id = IdGenerator.GenerateId();
             this.name = name;
             this.secondName = secondName;
             this.surname = surname;
@@ -69,6 +79,11 @@ namespace ElectronicJournal
             {
                 return sex;
             }
+        }
+
+        public int Id
+        {
+            get { return id; }
         }
 
         public override string ToString()
