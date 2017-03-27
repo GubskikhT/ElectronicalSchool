@@ -1,4 +1,4 @@
-﻿using ElectronicJournal.accounts;
+﻿using ElectronicSchool.accounts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElectronicJournal
+namespace ElectronicSchool
 {
     [DataContract]
     public class Human

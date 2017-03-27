@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElectronicJournal
+namespace ElectronicSchool
 {
     class TestRunner
     {
@@ -13,7 +13,7 @@ namespace ElectronicJournal
             DataStorage ds = new DataStorage();
             AccountManager am = new AccountManager(ds);
             Human hh = new Human("1", "2", "3", DateTime.Now, Human.SexT.Female);
-            am.RegisterNewUser("admin", "admin", "user1", "", accounts.AccountType.Common, hh);
+            am.RegisterNewUser(new accounts.LoginCredentials("admin", "admin"), "user1", "", accounts.AccountType.Common, hh);
             var serializer = new Serializator();
             serializer.SerializeStorage(ds);
 

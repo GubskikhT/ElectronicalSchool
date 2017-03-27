@@ -1,11 +1,11 @@
-﻿using ElectronicJournal.accounts;
+﻿using ElectronicSchool.accounts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElectronicJournal
+namespace ElectronicSchool
 {
     public class AccountManager
     {
@@ -16,26 +16,26 @@ namespace ElectronicJournal
             this.dStorage = dStorage;
         }
 
-        public bool Login(string username, string password, out int userId)
+        public bool Authenticate(LoginCredentials credits, out int userId)
         {
             string storedPassword;
-            if (!dStorage.LoginPasswordDict.TryGetValue(username, out storedPassword) || !storedPassword.Equals(password))
+            if (!dStorage.LoginPasswordDict.TryGetValue(credits.Username, out storedPassword) || !storedPassword.Equals(credits.Password))
             {
                 userId = -1;
                 Console.WriteLine("Authentication error!");
                 return false;
             } else
             {
-                dStorage.LoginIdDict.TryGetValue(username, out userId);
+                dStorage.LoginIdDict.TryGetValue(credits.Username, out userId);
                 return true;
             }
         }
 
-        public void RegisterNewUser(string currentUserName, string currentPassword,
+        public void RegisterNewUser(LoginCredentials credits,
             string newUserName, string newPassword, AccountType accountType, Human h)
         {
             int id;
-            if (Login(currentUserName, currentPassword, out id))
+            if (Authenticate(credits, out id))
             {
                 AccountType t;
                 if (dStorage.IdAccountDict.TryGetValue(id, out t) && t == AccountType.Admin)

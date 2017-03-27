@@ -50,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ElectronicJournal\ElectronicJournal.csproj">
+    <ProjectReference Include="..\ElectronicJournal\ElectronicSchool.csproj">
       <Project>{d3f6ceea-d45d-4c8a-b12b-71c545b6362c}</Project>
-      <Name>ElectronicJournal</Name>
+      <Name>ElectronicSchool</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

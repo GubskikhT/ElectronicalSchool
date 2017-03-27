@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElectronicJournal.accounts
+namespace ElectronicSchool.accounts
 {
     public enum AccountType
     {

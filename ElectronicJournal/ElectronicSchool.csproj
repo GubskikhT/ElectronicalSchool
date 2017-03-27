@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="accounts\AccountManager.cs" />
     <Compile Include="accounts\AccountType.cs" />
+    <Compile Include="accounts\LoginCredentials.cs" />
     <Compile Include="DataStorage.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="Human.cs" />
