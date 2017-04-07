@@ -77,5 +77,18 @@ namespace ElectronicSchool
             Login();
 
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            var subs = new List<Subject>();
+            subs.Add(new Subject("Maths", 36));
+            Teacher t = new Teacher("Fedor", "", "Ilich", new DateTime(1970, 10, 3), Human.SexT.Male, subs);
+            JournalTeacherWindow teacherWindow = new JournalTeacherWindow(dataStorage, t);
+            teacherWindow.Show();
+        }
     }
 }

@@ -11,13 +11,11 @@ namespace ElectronicSchool
     {
         private string name;
         private int hours;
-        private MarkType type;
 
-        public Subject(string name, int hours, MarkType type)
+        public Subject(string name, int hours)
         {
             this.name = name;
             this.hours = hours;
-            this.type = type;
         }
 
         public string Name
@@ -30,18 +28,13 @@ namespace ElectronicSchool
             get { return hours; }
         }
 
-        public MarkType MarkType
-        {
-            get { return type; }
-        }
-
 
         public override bool Equals(object obj)
         {
             if (!(obj is Subject))
                 return false;
             Subject o = (Subject)obj;
-            return name == o.name && hours == o.hours && type == o.type;
+            return name == o.name && hours == o.hours;
         }
 
         public static bool operator ==(Subject s1, Subject s2)

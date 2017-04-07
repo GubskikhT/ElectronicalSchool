@@ -8,7 +8,8 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <Button x:Name="loginButton" Content="Login" HorizontalAlignment="Left" Margin="214,126,0,0" VerticalAlignment="Top" Width="75" Click="loginButton_Click"/>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Height="54" Margin="242,199,0,0" VerticalAlignment="Top" Width="192" IsEnabled="{Binding Access}"/>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Height="54" Margin="242,199,0,0" VerticalAlignment="Top" Width="192" IsEnabled="{Binding Access}" Click="button_Click"/>
+        <Button x:Name="button1" Content="Teacher Window" HorizontalAlignment="Left" Margin="122,274,0,0" VerticalAlignment="Top" Width="75" Click="button1_Click"/>
 
     </Grid>
 </Window>

@@ -6,37 +6,18 @@ using System.Threading.Tasks;
 
 namespace ElectronicSchool
 {
-    public enum MarkType
-    {
-        Scored, Binary
-    }
-
     public struct Mark
     {
-        MarkType type;
         int value;
-        double weight;
 
-        public Mark(MarkType type, int value, double weight = 1.0)
+        public Mark(int value)
         {
-            this.type = type;
             this.value = value;
-            this.weight = weight;
-        }
-
-        public MarkType Type
-        {
-            get { return type; }
         }
 
         public int Value
         {
             get { return value; }
-        }
-
-        public double Weight
-        {
-            get { return weight; }
         }
 
         public override string ToString()
