@@ -1,28 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ElectronicSchool
+﻿namespace ElectronicSchool
 {
+
     public struct Mark
     {
-        int value;
+        public uint Value { get; private set; }
+        public uint MaxValue { get; private set; }
+        public double Weight { get; private set; }
 
-        public Mark(int value)
+        public Mark(uint value, uint maxValue = 5, double weight = 1.0)
         {
-            this.value = value;
-        }
-
-        public int Value
-        {
-            get { return value; }
+            this.Value = value;
+            this.MaxValue = maxValue;
+            this.Weight = weight;
         }
 
         public override string ToString()
         {
-            return "" + value;
+            return Value.ToString();
         }
     }
 

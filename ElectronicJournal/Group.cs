@@ -1,50 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace ElectronicSchool
 {
     public class Group
     {
-        private int level;
-        private char label;
-        private string description;
+        public int Level { get; private set; }
+        public char Label { get;  private set; }
+        public string Description { get; private set; }
 
         public Group(int level, char label, string description)
         {
-            this.level = level;
-            this.label = label;
-            this.description = description;
+            this.Level = level;
+            this.Label = label;
+            this.Description = description;
         }
 
         public Group()
         {
-        }
-
-        public int Level
-        {
-            get
-            {
-                return level;
-            }
-        }
-
-        public char Label
-        {
-            get
-            {
-                return label;
-            }
-        }
-
-        public string Description
-        {
-            get
-            {
-                return description;
-            }
         }
 
         public override string ToString()

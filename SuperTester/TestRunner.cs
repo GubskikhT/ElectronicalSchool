@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ElectronicSchool.accounts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,19 +11,23 @@ namespace ElectronicSchool
     {
         static void Main(string[] args)
         {
-            DataStorage ds = new DataStorage();
-            AccountManager am = new AccountManager(ds);
-            Human hh = new Human("1", "2", "3", DateTime.Now, Human.SexT.Female);
-            am.RegisterNewUser(new accounts.LoginCredentials("admin", "admin"), "user1", "", accounts.AccountType.Common, hh);
-            var serializer = new Serializator();
-            serializer.SerializeStorage(ds);
+            Subject s1 = new Subject("Math", 32);
+            Subject s2 = new Subject("Math", 32);
 
+            Console.WriteLine(s1 == s2);
 
-            Human h = new Human("Ivan", "Ivanovich", "Ivanov", new DateTime(1990, 12, 31), Human.SexT.Male);
-            Group g1 = new Group(11, 'A', "phys-math");
-            Group g2 = new Group(9, 'A', "phys-math");
-            Student s1 = new Student("Ivan", "Ivanovich", "Ivanov", new DateTime(1990, 12, 31), Human.SexT.Male, g1);
-            Student s2 = new Student(h, g2);
+            //DataStorage ds = new DataStorage();
+            //AccountManager am = new AccountManager(ds);
+            //Human hh = new Human("1", "2", "3", DateTime.Now, Human.SexT.Female);
+            //am.RegisterNewUser(new LoginCredentionals("admin", "admin"), "user1", "", AccountType.Common, hh);
+            //var serializer = new Serializator();
+            //serializer.SerializeStorage(ds);
+
+            //Human h = new Human("Ivan", "Ivanovich", "Ivanov", new DateTime(1990, 12, 31), Human.SexT.Male);
+            //Group g1 = new Group(11, 'A', "phys-math");
+            //Group g2 = new Group(9, 'A', "phys-math");
+            //Student s1 = new Student("Ivan", "Ivanovich", "Ivanov", new DateTime(1990, 12, 31), Human.SexT.Male, g1);
+            //Student s2 = new Student(h, g2);
             //Console.WriteLine(h);
             //Console.WriteLine(g1);
             //Console.WriteLine(s1);

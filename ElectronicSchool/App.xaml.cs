@@ -13,5 +13,10 @@ namespace ElectronicSchool
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            var w = new AppWindow();
+            w.Show();
+        }
     }
 }

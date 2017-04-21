@@ -1,10 +1,5 @@
-﻿using ElectronicSchool.accounts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ElectronicSchool
 {
@@ -13,77 +8,35 @@ namespace ElectronicSchool
     {
         public enum SexT { Male, Female}
 
-        private int id;
+        public int Id { get; private set; }
         [DataMember]
-        private string name;
+        public string Name { get; private set; }
         [DataMember]
-        private string secondName;
+        public string SecondName { get; private set; }
         [DataMember]
-        private string surname;
+        public string Surname { get; private set; }
         [DataMember]
-        private DateTime birthDay;
+        public DateTime BirthDay { get; private set; }
         [DataMember]
-        private SexT sex;
+        public SexT Sex { get; private set; }
 
         public Human(string name, string secondName, string surname, DateTime birthDay, SexT sex)
         {
-            this.id = IdGenerator.GenerateId();
-            this.name = name;
-            this.secondName = secondName;
-            this.surname = surname;
-            this.birthDay = birthDay;
-            this.sex = sex;
+            this.Id = IdGenerator.GenerateId();
+            this.Name = name;
+            this.SecondName = secondName;
+            this.Surname = surname;
+            this.BirthDay = birthDay;
+            this.Sex = sex;
         }
 
         public Human(Human h)
         {
-            this.name = h.Name;
-            this.secondName = h.SecondName;
-            this.surname = h.Surname;
-            this.birthDay = h.BirthDay;
-            this.sex = h.Sex;
-        }
-
-        public string Name
-        {
-            get { return name; }
-        }
-
-        public string SecondName
-        {
-            get
-            {
-                return secondName;
-            }
-        }
-
-        public string Surname
-        {
-            get
-            {
-                return surname;
-            }
-        }
-
-        public DateTime BirthDay
-        {
-            get
-            {
-                return birthDay;
-            }
-        }
-
-        private SexT Sex
-        {
-            get
-            {
-                return sex;
-            }
-        }
-
-        public int Id
-        {
-            get { return id; }
+            this.Name = h.Name;
+            this.SecondName = h.SecondName;
+            this.Surname = h.Surname;
+            this.BirthDay = h.BirthDay;
+            this.Sex = h.Sex;
         }
 
         public override string ToString()

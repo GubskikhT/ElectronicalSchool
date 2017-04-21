@@ -1,45 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ElectronicSchool
+﻿namespace ElectronicSchool
 {
 
     public struct Subject
     {
-        private string name;
-        private int hours;
+        public string Name { get; private set; }
+        public int Hours { get; private set; }
 
         public Subject(string name, int hours)
         {
-            this.name = name;
-            this.hours = hours;
+            this.Name = name;
+            this.Hours = hours;
         }
-
-        public string Name
-        {
-            get { return name; }
-        }
-
-        public int Hours
-        {
-            get { return hours; }
-        }
-
 
         public override bool Equals(object obj)
         {
-            if (!(obj is Subject))
-                return false;
-            Subject o = (Subject)obj;
-            return name == o.name && hours == o.hours;
+            return obj is Subject && this == (Subject)obj;
+        }
+
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode() ^ Hours.GetHashCode();
         }
 
         public static bool operator ==(Subject s1, Subject s2)
         {
-            return s1.Equals(s2);
+            return s1.Name == s2.Name && s1.Hours == s2.Hours;
         }
 
         public static bool operator !=(Subject s1, Subject s2)
@@ -49,7 +34,7 @@ namespace ElectronicSchool
 
         public override string ToString()
         {
-            return name;
+            return Name;
         }
     }
 }

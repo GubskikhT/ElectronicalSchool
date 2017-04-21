@@ -1,29 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ElectronicSchool.accounts
+﻿namespace ElectronicSchool.accounts
 {
-    public struct LoginCredentials
+    public struct LoginCredentionals
     {
-        private readonly string username, password;
+        public string Username { get; private set; }
+        public string Password { get; private set; }
 
-        public LoginCredentials(string username, string password)
+        public LoginCredentionals(string username, string password)
         {
-            this.username = username;
-            this.password = password;
-        }
-
-        public string Username
-        {
-            get { return username;  }
-        }
-
-        public string Password
-        {
-            get { return password; }
+            this.Username = username;
+            this.Password = password;
         }
     }
 }

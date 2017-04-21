@@ -26,7 +26,7 @@ namespace ElectronicSchool
         {
             Human h = new Human("admin", "admin", "admin", DateTime.Now, Human.SexT.Male);
             idHumanDict.Add(h.Id, h);
-            idAccountDict.Add(h.Id, AccountType.Admin);
+            idAccountDict.Add(h.Id, AccountType.Privilaged);
             loginPasswordDict.Add("admin", "admin");
             loginIdDict.Add("admin", h.Id);
         }
@@ -59,11 +59,5 @@ namespace ElectronicSchool
             get { return loginPasswordDict; }
         }
 
-        public void printAllStudents()
-        {
-            IdHumanDict.Values
-                .Where(x => x.GetType() == typeof(Student)).ToList()
-                .ForEach(s => Console.WriteLine(s));
-        }
     }
 }

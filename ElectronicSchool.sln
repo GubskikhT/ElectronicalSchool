@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectroniJournal", "ElectronicSchool\ElectroniJournal.csproj", "{19E7F2D0-595B-497D-8DB9-6F6C23FE6AFF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectronicJournal", "ElectronicSchool\ElectronicJournal.csproj", "{19E7F2D0-595B-497D-8DB9-6F6C23FE6AFF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectronicSchool", "ElectronicJournal\ElectronicSchool.csproj", "{D3F6CEEA-D45D-4C8A-B12B-71C545B6362C}"
 EndProject

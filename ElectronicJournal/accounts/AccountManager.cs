@@ -1,9 +1,5 @@
 ﻿using ElectronicSchool.accounts;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ElectronicSchool
 {
@@ -16,7 +12,7 @@ namespace ElectronicSchool
             this.dStorage = dStorage;
         }
 
-        public bool Authenticate(LoginCredentials credits, out int userId)
+        public bool Authenticate(LoginCredentionals credits, out int userId)
         {
             string storedPassword;
             if (!dStorage.LoginPasswordDict.TryGetValue(credits.Username, out storedPassword) || !storedPassword.Equals(credits.Password))
@@ -31,14 +27,14 @@ namespace ElectronicSchool
             }
         }
 
-        public void RegisterNewUser(LoginCredentials credits,
+        public void RegisterNewUser(LoginCredentionals credits,
             string newUserName, string newPassword, AccountType accountType, Human h)
         {
             int id;
             if (Authenticate(credits, out id))
             {
                 AccountType t;
-                if (dStorage.IdAccountDict.TryGetValue(id, out t) && t == AccountType.Admin)
+                if (dStorage.IdAccountDict.TryGetValue(id, out t) && t == AccountType.Privilaged)
                 {
                     Console.WriteLine("Registing new user");
                     dStorage.IdAccountDict.Add(h.Id, accountType);
