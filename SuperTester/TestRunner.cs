@@ -1,6 +1,8 @@
-﻿using ElectronicSchool.accounts;
+﻿using ElectronicJournal.logging;
+using ElectronicSchool.accounts;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +13,9 @@ namespace ElectronicSchool
     {
         static void Main(string[] args)
         {
+            Logger.Warn("Hello!");
+            Logger.Info("Hi");
+
             Subject s1 = new Subject("Math", 32);
             Subject s2 = new Subject("Math", 32);
 

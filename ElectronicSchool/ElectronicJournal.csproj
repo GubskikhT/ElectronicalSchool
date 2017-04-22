@@ -58,6 +58,9 @@
     <Compile Include="GuestPage.xaml.cs">
       <DependentUpon>GuestPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrivilagedPage.xaml.cs">
+      <DependentUpon>PrivilagedPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TeacherPage.xaml.cs">
       <DependentUpon>TeacherPage.xaml</DependentUpon>
     </Compile>
@@ -83,6 +86,10 @@
     <Compile Include="AppWindow.xaml.cs">
       <DependentUpon>AppWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="PrivilagedPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TeacherPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

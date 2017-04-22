@@ -16,22 +16,13 @@ using System.Windows.Shapes;
 namespace ElectronicSchool
 {
     /// <summary>
-    /// Interaction logic for GuestPage.xaml
+    /// Interaction logic for PrivilagedPage.xaml
     /// </summary>
-    public partial class GuestPage : Page
+    public partial class PrivilagedPage : Page
     {
-        private readonly AccountManager accountManager;
-
-        public GuestPage(AccountManager accountManager)
+        public PrivilagedPage()
         {
-            this.accountManager = accountManager;
             InitializeComponent();
-        }
-
-        private void LogoutButton_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new LoginPage(accountManager));
         }
     }
 }

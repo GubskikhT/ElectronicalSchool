@@ -44,12 +44,14 @@
     <Compile Include="accounts\AccountManager.cs" />
     <Compile Include="accounts\AccountType.cs" />
     <Compile Include="accounts\LoginCredentials.cs" />
+    <Compile Include="AppConfiguration.cs" />
     <Compile Include="DataStorage.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="Human.cs" />
     <Compile Include="IdGenerator.cs" />
     <Compile Include="journal\Journal.cs" />
     <Compile Include="journal\JournalEntry.cs" />
+    <Compile Include="logging\Logger.cs" />
     <Compile Include="Mark.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
