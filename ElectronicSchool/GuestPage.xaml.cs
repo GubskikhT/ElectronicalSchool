@@ -20,18 +20,15 @@ namespace ElectronicSchool
     /// </summary>
     public partial class GuestPage : Page
     {
-        private readonly AccountManager accountManager;
-
-        public GuestPage(AccountManager accountManager)
+        public GuestPage()
         {
-            this.accountManager = accountManager;
             InitializeComponent();
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new LoginPage(accountManager));
+            nav.Navigate(new LoginPage());
         }
     }
 }

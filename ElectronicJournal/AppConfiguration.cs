@@ -9,5 +9,6 @@ namespace ElectronicJournal
     public static class AppConfiguration
     {
         public static readonly string LogFolder = "..\\..\\..\\logs\\";
+        public static readonly string DataFolder = "..\\..\\..\\data\\";
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ElectronicSchool"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="300">
+        Title="Electronic School" Height="600" Width="1200" Closing="Window_Closing">
     <DockPanel>
         <Frame x:Name="mainFrame" ContentRendered="mainFrame_ContentRendered" />
     </DockPanel>

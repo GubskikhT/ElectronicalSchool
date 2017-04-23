@@ -9,12 +9,12 @@ namespace ElectronicSchool
     public struct JournalEntry
     {
         DateTime time;
-        Human student;
-        Human teacher;
+        Person student;
+        Person teacher;
         Subject subject;
         Mark mark;
 
-        public JournalEntry(DateTime time, Human student, Human teacher, Subject subject, Mark mark)
+        public JournalEntry(DateTime time, Person student, Person teacher, Subject subject, Mark mark)
         {
             this.time = time;
             this.student = student;
@@ -31,7 +31,7 @@ namespace ElectronicSchool
             }
         }
 
-        public Human Student
+        public Person Student
         {
             get
             {
@@ -39,7 +39,7 @@ namespace ElectronicSchool
             }
         }
 
-        internal Human Teacher
+        internal Person Teacher
         {
             get
             {

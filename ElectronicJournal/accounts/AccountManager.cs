@@ -1,51 +1,36 @@
-﻿using ElectronicSchool.accounts;
-using System;
+﻿using ElectronicJournal.data;
+using ElectronicJournal.logging;
+using ElectronicSchool.accounts;
 
 namespace ElectronicSchool
 {
-    public class AccountManager
+    public static class AccountManager
     {
-        private DataStorage dStorage;
+        private static DataStorage dStorage = DataManager.DStorage;
 
-        public AccountManager(DataStorage dStorage)
+        public static bool Authenticate(LoginCredentionals credits, out int userId)
         {
-            this.dStorage = dStorage;
-        }
-
-        public bool Authenticate(LoginCredentionals credits, out int userId)
-        {
+            Logger.Info("Authenticating user [" + credits.Username + "]...");
             string storedPassword;
-            if (!dStorage.LoginPasswordDict.TryGetValue(credits.Username, out storedPassword) || !storedPassword.Equals(credits.Password))
+            if (!dStorage.Login_Password_Map.TryGetValue(credits.Username, out storedPassword) || !storedPassword.Equals(credits.Password))
             {
+                Logger.Warn("Authentication error. Login and password do not match!");
                 userId = -1;
-                Console.WriteLine("Authentication error!");
                 return false;
             } else
             {
-                dStorage.LoginIdDict.TryGetValue(credits.Username, out userId);
+                try
+                {
+                    dStorage.Login_Id_Map.TryGetValue(credits.Username, out userId);
+                    Logger.Info("Authentication succeeded.");
+                } catch
+                {
+                    userId = -1;
+                    Logger.Error("Authentication failed.");
+                }
                 return true;
             }
         }
 
-        public void RegisterNewUser(LoginCredentionals credits,
-            string newUserName, string newPassword, AccountType accountType, Human h)
-        {
-            int id;
-            if (Authenticate(credits, out id))
-            {
-                AccountType t;
-                if (dStorage.IdAccountDict.TryGetValue(id, out t) && t == AccountType.Privilaged)
-                {
-                    Console.WriteLine("Registing new user");
-                    dStorage.IdAccountDict.Add(h.Id, accountType);
-                    dStorage.IdHumanDict.Add(h.Id, h);
-                    dStorage.LoginIdDict.Add(newUserName, h.Id);
-                    dStorage.LoginPasswordDict.Add(newUserName, newPassword);
-                } else
-                {
-                    Console.WriteLine("Not enought purmishens for registing new user");
-                }
-            }
-        }
     }
 }

@@ -1,11 +1,6 @@
-﻿using ElectronicJournal.logging;
-using ElectronicSchool.accounts;
+﻿using ElectronicJournal.data;
+using ElectronicJournal.logging;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ElectronicSchool
 {
@@ -13,13 +8,20 @@ namespace ElectronicSchool
     {
         static void Main(string[] args)
         {
-            Logger.Warn("Hello!");
-            Logger.Info("Hi");
+            DataManager.DStorage.MockFill();
+            DataManager.SaveStorage();
 
-            Subject s1 = new Subject("Math", 32);
-            Subject s2 = new Subject("Math", 32);
+            //Console.WriteLine(DataManager.Data.LoginPasswordMap.ToString());
 
-            Console.WriteLine(s1 == s2);
+            //DataManager.SaveStorage();
+
+            //Logger.Warn("Hello!");
+            //Logger.Info("Hi");
+
+            //Subject s1 = new Subject("Math", 32);
+            //Subject s2 = new Subject("Math", 32);
+
+            //Console.WriteLine(s1 == s2);
 
             //DataStorage ds = new DataStorage();
             //AccountManager am = new AccountManager(ds);

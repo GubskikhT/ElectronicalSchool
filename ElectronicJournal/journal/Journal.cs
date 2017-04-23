@@ -11,7 +11,7 @@ namespace ElectronicSchool
         List<JournalEntry> entries = new List<JournalEntry>();
 
 
-        public void AddEntry(Human teacher, Subject subject, DateTime time, Human student, Mark mark)
+        public void AddEntry(Person teacher, Subject subject, DateTime time, Person student, Mark mark)
         {
             var entry = new JournalEntry(time, student, teacher, subject, mark);
             if (IsValid(entry))
@@ -23,7 +23,7 @@ namespace ElectronicSchool
             }
         }
 
-        public List<JournalEntry> GetEntries(Human student, Subject? subject = null)
+        public List<JournalEntry> GetEntries(Person student, Subject? subject = null)
         {
             return entries.Where(e => e.Student == student).Where(e => !subject.HasValue || (subject.HasValue && e.Subject == subject.Value)).ToList();
         }
