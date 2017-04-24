@@ -35,7 +35,12 @@ namespace ElectronicSchool
         public override string ToString()
         {
             return Surname + " " + Name + " " + SecondName + " (" + Sex + ", " + BirthDay.ToShortDateString() + ")";
-        } 
+        }
+
+        public string ToShortString()
+        {
+            return Surname + " " + Name[0] + ". " + SecondName[0] + ".";
+        }
             
     }
 }

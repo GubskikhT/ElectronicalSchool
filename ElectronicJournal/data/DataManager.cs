@@ -12,6 +12,7 @@ namespace ElectronicJournal.data
         private static string dataFileFullName = AppConfiguration.DataFolder + "data.ser";
 
         static DataManager() {
+            //DStorage.MockFill();
             LoadStorage();
         }
 

@@ -46,6 +46,7 @@
     <Compile Include="AppConfiguration.cs" />
     <Compile Include="data\DataManager.cs" />
     <Compile Include="data\DataStorage.cs" />
+    <Compile Include="ExtendedPerson.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="journal\Journal.cs" />
