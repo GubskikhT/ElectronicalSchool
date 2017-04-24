@@ -8,7 +8,8 @@ namespace ElectronicSchool
     public class Person
     {
         public enum SexT { Male, Female}
-
+        
+        [DataMember]
         public int Id { get; private set; }
 
         [DataMember]

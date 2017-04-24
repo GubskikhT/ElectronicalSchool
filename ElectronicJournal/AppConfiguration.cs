@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ElectronicJournal
+﻿namespace ElectronicJournal
 {
     public static class AppConfiguration
     {
-        public static readonly string LogFolder = "..\\..\\..\\logs\\";
-        public static readonly string DataFolder = "..\\..\\..\\data\\";
+        public const string LogFolder = "..\\..\\..\\logs\\";
+        public const string DataFolder = "..\\..\\..\\data\\";
+        public const uint MaxMarkValue = 5;
+        public const uint MinMarkValue = 1;
     }
 }

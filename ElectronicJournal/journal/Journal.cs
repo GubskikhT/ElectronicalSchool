@@ -1,31 +1,32 @@
-﻿using System;
+﻿using ElectronicJournal.logging;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace ElectronicSchool
 {
+    [DataContract]
     public class Journal
     {
+        [DataMember]
         List<JournalEntry> entries = new List<JournalEntry>();
 
-
-        public void AddEntry(Person teacher, Subject subject, DateTime time, Person student, Mark mark)
+        public void AddEntry(JournalEntry entry)
         {
-            var entry = new JournalEntry(time, student, teacher, subject, mark);
+            Logger.Info("Adding new entry [" + entry + "] to journal...");
             if (IsValid(entry))
             {
                 entries.Add(entry);
+                Logger.Info("Adding new entry suceeded.");
             } else
             {
-                Console.Error.WriteLine("Trying to add the invalid entry");
+                Logger.Warn("Entry is not valid. Adding failed.");
             }
         }
 
-        public List<JournalEntry> GetEntries(Person student, Subject? subject = null)
+        public List<JournalEntry> GetEntries(int studentId, Subject? subject = null)
         {
-            return entries.Where(e => e.Student == student).Where(e => !subject.HasValue || (subject.HasValue && e.Subject == subject.Value)).ToList();
+            return entries.Where(e => e.StudentId == studentId).Where(e => !subject.HasValue || e.Subject == subject.Value).ToList();
         }
 
         public bool IsValid(JournalEntry entry)

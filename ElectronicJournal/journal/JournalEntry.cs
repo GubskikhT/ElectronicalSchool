@@ -1,71 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ElectronicJournal.data;
+using System;
+using System.Runtime.Serialization;
 
 namespace ElectronicSchool
 {
+    [DataContract]
     public struct JournalEntry
     {
-        DateTime time;
-        Person student;
-        Person teacher;
-        Subject subject;
-        Mark mark;
+        [DataMember]
+        public DateTime Time { get; private set; }
+        [DataMember]
+        public int StudentId { get; private set; }
+        [DataMember]
+        public int TeacherId { get; private set; }
+        [DataMember]
+        public Subject Subject { get; private set; }
+        [DataMember]
+        public Mark Mark { get; private set; }
 
-        public JournalEntry(DateTime time, Person student, Person teacher, Subject subject, Mark mark)
+        public JournalEntry(DateTime time, int studentId, int teacherId, Subject subject, Mark mark)
         {
-            this.time = time;
-            this.student = student;
-            this.teacher = teacher;
-            this.subject = subject;
-            this.mark = mark;
-        }
-
-        public DateTime Time
-        {
-            get
-            {
-                return time;
-            }
-        }
-
-        public Person Student
-        {
-            get
-            {
-                return student;
-            }
-        }
-
-        internal Person Teacher
-        {
-            get
-            {
-                return teacher;
-            }
-        }
-
-        internal Subject Subject
-        {
-            get
-            {
-                return subject;
-            }
-        }
-
-        public Mark Mark
-        {
-            get
-            {
-                return mark;
-            }
+            this.Time = time;
+            this.StudentId = studentId;
+            this.TeacherId = teacherId;
+            this.Subject = subject;
+            this.Mark = mark;
         }
 
         public override string ToString()
         {
-            return time + ": " + Student + " " + Teacher +" (" + Subject +") - " + Mark;
+            var Student = DataManager.DStorage.Id_Login_Map[StudentId];
+            var Teacher = DataManager.DStorage.Id_Login_Map[TeacherId];
+            return Time + ": " + Student + " " + Teacher +" (" + Subject +") - " + Mark;
         }
     }
 }

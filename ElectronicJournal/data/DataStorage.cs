@@ -31,16 +31,32 @@ namespace ElectronicSchool
         [DataMember]
         public Dictionary<int, string> Id_Login_Map { get; private set; } = new Dictionary<int, string>();
 
+        [DataMember]
         public Journal Journal { get; private set; } = new Journal();
 
         public void MockFill()
         {
-            Person h = new Person("admin", "admin", "admin", DateTime.Now, Person.SexT.Male);
+            Person h = new Person("admin", "admin", "admin", new DateTime(1990, 11, 3), Person.SexT.Male);
             Id_Person_Map.Add(h.Id, h);
             Id_Position_Map.Add(h.Id, Position.Administrator);
             Login_Password_Map.Add("admin", "admin");
             Login_Id_Map.Add("admin", h.Id);
             Id_Login_Map.Add(h.Id, "admin");
+
+            Person h2 = new Person("Anrey", "Andreevich", "Tikhonov", new DateTime(1970, 10, 5), Person.SexT.Male);
+            Id_Person_Map.Add(h2.Id, h2);
+            Id_Position_Map.Add(h2.Id, Position.Teacher);
+            Login_Password_Map.Add("teacher", "teacher");
+            Login_Id_Map.Add("teacher", h2.Id);
+            Id_Login_Map.Add(h2.Id, "teacher");
+            Id_Subject_Map.Add(h2.Id, Subject.Mathematics);
+
+            Person h3 = new Person("Petr", "Ivanovich", "Sobolev", new DateTime(1998, 2, 2), Person.SexT.Male);
+            Id_Person_Map.Add(h3.Id, h3);
+            Id_Position_Map.Add(h3.Id, Position.Student);
+            Login_Password_Map.Add("student", "student");
+            Login_Id_Map.Add("student", h3.Id);
+            Id_Login_Map.Add(h3.Id, "student");
         }
 
         public int NextId()
@@ -139,6 +155,15 @@ namespace ElectronicSchool
                     Logger.Warn("Removing user failed.");
                 }
             }
+        }
+
+        public List<Person> GetStudents()
+        {
+            List<Person> students = new List<Person>();
+            foreach(var i in Id_Position_Map)
+                if (i.Value == Position.Student)
+                    students.Add(Id_Person_Map[i.Key]);
+            return students;
         }
     }
 }

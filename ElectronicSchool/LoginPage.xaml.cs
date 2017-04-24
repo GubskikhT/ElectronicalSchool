@@ -31,11 +31,11 @@ namespace ElectronicSchool
                         case Position.Guest:
                         case Position.Student:
                             Logger.Info("Navigating to guest page.");
-                            nav.Navigate(new GuestPage());
+                            nav.Navigate(new GuestPage(credits));
                             return;
                         case Position.Teacher:
                             Logger.Info("Navigating to teacher page.");
-                            nav.Navigate(new TeacherPage());
+                            nav.Navigate(new TeacherPage(credits));
                             return;
                         case Position.Administrator:
                             Logger.Info("Navigating to administrator page.");

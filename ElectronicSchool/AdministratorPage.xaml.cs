@@ -51,6 +51,7 @@ namespace ElectronicSchool
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
+            DataManager.SaveStorage();
             NavigationService nav = NavigationService.GetNavigationService(this);
             nav.Navigate(new LoginPage());
         }
