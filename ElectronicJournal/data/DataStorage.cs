@@ -32,16 +32,19 @@ namespace ElectronicSchool
         public Dictionary<int, string> Id_Login_Map { get; private set; } = new Dictionary<int, string>();
 
         [DataMember]
+        public Dictionary<int, int> Guest_Studednt_Map { get; private set; } = new Dictionary<int, int>();
+
+        [DataMember]
         public Journal Journal { get; private set; } = new Journal();
 
         public void MockFill()
         {
-            Person h = new Person("admin", "admin", "admin", new DateTime(1990, 11, 3), Person.SexT.Male);
-            Id_Person_Map.Add(h.Id, h);
-            Id_Position_Map.Add(h.Id, Position.Administrator);
+            Person h1 = new Person("admin", "admin", "admin", new DateTime(1990, 11, 3), Person.SexT.Male);
+            Id_Person_Map.Add(h1.Id, h1);
+            Id_Position_Map.Add(h1.Id, Position.Administrator);
             Login_Password_Map.Add("admin", "admin");
-            Login_Id_Map.Add("admin", h.Id);
-            Id_Login_Map.Add(h.Id, "admin");
+            Login_Id_Map.Add("admin", h1.Id);
+            Id_Login_Map.Add(h1.Id, "admin");
 
             Person h2 = new Person("Anrey", "Andreevich", "Tikhonov", new DateTime(1970, 10, 5), Person.SexT.Male);
             Id_Person_Map.Add(h2.Id, h2);
@@ -57,6 +60,14 @@ namespace ElectronicSchool
             Login_Password_Map.Add("student", "student");
             Login_Id_Map.Add("student", h3.Id);
             Id_Login_Map.Add(h3.Id, "student");
+
+            Person h4 = new Person("Anna", "Ivanovna", "Soboleva", new DateTime(1973, 4, 20), Person.SexT.Female);
+            Id_Person_Map.Add(h4.Id, h4);
+            Id_Position_Map.Add(h4.Id, Position.Guest);
+            Login_Password_Map.Add("parent", "parent");
+            Login_Id_Map.Add("parent", h4.Id);
+            Id_Login_Map.Add(h4.Id, "parent");
+            Guest_Studednt_Map.Add(h4.Id, h3.Id);
         }
 
         public int NextId()
@@ -128,6 +139,24 @@ namespace ElectronicSchool
             }
         }
 
+        public void RegisterGuest(LoginCredentionals credits, int studentId, int guestId)
+        {
+            Logger.Info("Trying to add a guest [" + guestId + "] to watch student [" + studentId + "]...");
+            if (CheckPermission(credits))
+            {
+                Console.WriteLine("Adding new guest...");
+                try
+                {
+                    Guest_Studednt_Map.Add(guestId, studentId);
+                    Logger.Info("Regestering new guest succeeded.");
+                }
+                catch
+                {
+                    Logger.Warn("Registering new guest failed.");
+                }
+            }
+        }
+
         public void RemoveUser(LoginCredentionals credits, int id)
         {
             Logger.Info("Trying to remove a user [" + id + "]...");
@@ -148,6 +177,8 @@ namespace ElectronicSchool
                         Id_Position_Map.Remove(id);
                     if (Id_Subject_Map.ContainsKey(id))
                         Id_Subject_Map.Remove(id);
+                    if (Guest_Studednt_Map.ContainsKey(id))
+                        Guest_Studednt_Map.Remove(id);
                     Logger.Info("Removing user succeeded.");
                 }
                 catch

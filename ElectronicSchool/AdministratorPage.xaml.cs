@@ -15,6 +15,7 @@ namespace ElectronicSchool
     public partial class AdministratorPage : Page
     {
         private ObservableCollection<ExtendedPerson> _personList;
+        private ObservableCollection<Person> _studentList;
         private LoginCredentionals credits;
         private AdministrativeViewModel avm;
 
@@ -22,34 +23,47 @@ namespace ElectronicSchool
         {
             this.credits = credits;
             InitializeComponent();
-            InitializePersonList();
+            InitializeData();
             var id = DataManager.DStorage.Login_Id_Map[credits.Username];
             var person = DataManager.DStorage.Id_Person_Map[id];
             AdminLabel.Content = "Administrator [" + person.ToShortString() + "]";
-            avm = new AdministrativeViewModel(_personList);
+            avm = new AdministrativeViewModel(_personList, _studentList);
             DataContext = avm;
             PositionComboBox.ItemsSource = Enum.GetValues(typeof(Position));
             SexComboBox.ItemsSource = Enum.GetValues(typeof(SexT));
             SubjectComboBox.ItemsSource = Enum.GetValues(typeof(Subject));
-            SubjectComboBox.SelectedIndex = 0;
-            SubjectLabel.Visibility = Visibility.Hidden;
-            SubjectComboBox.Visibility = Visibility.Hidden;
+            SwitchSubject(false);
+            SwitchGuest(false);
         }
 
-        private void InitializePersonList()
+        private void InitializeData()
         {
             _personList = new ObservableCollection<ExtendedPerson>();
+            _studentList = new ObservableCollection<Person>();
             var ids = DataManager.DStorage.Id_Person_Map.Keys;
             var currentId = DataManager.DStorage.Login_Id_Map[credits.Username];
             foreach (var id in ids)
             {
+                var person = DataManager.DStorage.Id_Person_Map[id];
+                var position = DataManager.DStorage.Id_Position_Map[id];
                 if (id != currentId)
-                {
-                    var person = DataManager.DStorage.Id_Person_Map[id];
-                    var position = DataManager.DStorage.Id_Position_Map[id];
                     _personList.Add(new ExtendedPerson(person, position));
-                }
+                if (position == Position.Student)
+                    _studentList.Add(person);
             }
+        }
+
+        private void SwitchSubject(bool on)
+        {
+            SubjectLabel.Visibility = on ? Visibility.Visible : Visibility.Hidden;
+            SubjectComboBox.Visibility = on ? Visibility.Visible : Visibility.Hidden;
+            SubjectComboBox.SelectedIndex = on ? -1 : 0;
+        }
+
+        private void SwitchGuest(bool on)
+        {
+            GuestLabel.Visibility = on ? Visibility.Visible : Visibility.Hidden;
+            GuestComboBox.Visibility = on ? Visibility.Visible : Visibility.Hidden;
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
@@ -62,17 +76,12 @@ namespace ElectronicSchool
         private void PositionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox cmb = (ComboBox)sender;
-            if (cmb.SelectedValue == null || (Position)cmb.SelectedValue != Position.Teacher)
-            {
-                SubjectComboBox.SelectedIndex = 0;
-                SubjectLabel.Visibility = Visibility.Hidden;
-                SubjectComboBox.Visibility = Visibility.Hidden;
-            } else
-            {
-                SubjectComboBox.SelectedIndex = -1;
-                SubjectLabel.Visibility = Visibility.Visible;
-                SubjectComboBox.Visibility = Visibility.Visible;
-            }
+            SwitchSubject(false);
+            SwitchGuest(false);
+            if (cmb.SelectedValue != null && (Position)cmb.SelectedValue == Position.Teacher)
+                SwitchSubject(true);
+            else if (cmb.SelectedValue != null && (Position)cmb.SelectedValue == Position.Guest)
+                SwitchGuest(true);
         }
 
         private void Reset()
@@ -103,6 +112,11 @@ namespace ElectronicSchool
             {
                 DataManager.DStorage.RegisterTeacher(credits, p.Id, (Subject)avm.SubjectIndex);
             }
+            else if ((Position)avm.PositionIndex == Position.Guest)
+            {
+                var studentId = _studentList[avm.StudentIndex].Id;
+                DataManager.DStorage.RegisterGuest(credits, studentId, p.Id);
+            }
             Reset();
         }
 
@@ -117,6 +131,7 @@ namespace ElectronicSchool
     public class AdministrativeViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<ExtendedPerson> _personList;
+        private ObservableCollection<Person> _studentList;
 
         public ObservableCollection<ExtendedPerson> PersonList
         {
@@ -134,6 +149,22 @@ namespace ElectronicSchool
             }
         }
 
+        public ObservableCollection<Person> StudentList
+        {
+            get
+            {
+                return _studentList;
+            }
+            set
+            {
+                if (_studentList != value)
+                {
+                    value = _studentList;
+                    OnPropertyChanged("StudentList");
+                }
+            }
+        }
+
         private string _userName = "";
         private string _password = "";
         private string _name = "";
@@ -142,11 +173,13 @@ namespace ElectronicSchool
         private int _sexIndex = -1;
         private int _positionIndex = -1;
         private int _subjectIndex = -1;
+        private int _studentIndex = -1;
         private DateTime _birthday;
 
-        public AdministrativeViewModel(ObservableCollection<ExtendedPerson> _personList)
+        public AdministrativeViewModel(ObservableCollection<ExtendedPerson> _personList, ObservableCollection<Person> _studentList)
         {
             this._personList = _personList;
+            this._studentList = _studentList;
         }
 
         public DateTime Birthday
@@ -217,6 +250,24 @@ namespace ElectronicSchool
                 {
                     _subjectIndex = value;
                     OnPropertyChanged("SubjectIndex");
+                }
+            }
+        }
+
+        public int StudentIndex
+        {
+            get
+            {
+                return _studentIndex;
+            }
+            set
+            {
+                if (value == -1)
+                    throw new Exception("Student should be selected.");
+                if (_studentIndex != value)
+                {
+                    _studentIndex = value;
+                    OnPropertyChanged("StudentIndex");
                 }
             }
         }

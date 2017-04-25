@@ -11,15 +11,25 @@ namespace ElectronicSchool
     {
         private LoginCredentionals credits;
         private Person student;
+        private bool guestView = false;
 
         public GuestPage(LoginCredentionals credits)
         {
             this.credits = credits;
-            var studentId = DataManager.DStorage.Login_Id_Map[credits.Username];
-            this.student = DataManager.DStorage.Id_Person_Map[studentId];
+            var id = DataManager.DStorage.Login_Id_Map[credits.Username];
+            var position = DataManager.DStorage.Id_Position_Map[id];
+            if (position == ElectronicJournal.Position.Guest)
+            {
+                guestView = true;
+                id = DataManager.DStorage.Guest_Studednt_Map[id];
+            }
+            this.student = DataManager.DStorage.Id_Person_Map[id];
             InitializeComponent();
-            MarkLabel.Content = "Marks for student [" + student + "]:";
-            var entries = DataManager.DStorage.Journal.GetEntries(studentId);
+            if (guestView)
+                MarkLabel.Content = "Marks for student [" + student + "] (guest view):";
+            else
+                MarkLabel.Content = "Marks for student [" + student + "]:";
+            var entries = DataManager.DStorage.Journal.GetEntries(id);
             var displayEntries = entries.ConvertAll(e => new DisplayEntry(e.Time, e.Subject, DataManager.DStorage.Id_Person_Map[e.TeacherId], e.Mark));
             MarkGrid.ItemsSource = displayEntries;
         }

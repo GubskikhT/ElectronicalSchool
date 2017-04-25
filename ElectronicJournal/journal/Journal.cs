@@ -1,4 +1,5 @@
-﻿using ElectronicJournal.logging;
+﻿using ElectronicJournal.data;
+using ElectronicJournal.logging;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -20,7 +21,7 @@ namespace ElectronicSchool
                 Logger.Info("Adding new entry suceeded.");
             } else
             {
-                Logger.Warn("Entry is not valid. Adding failed.");
+                Logger.Warn("Entry [" + entry + "] is not valid. Adding failed.");
             }
         }
 
@@ -31,10 +32,15 @@ namespace ElectronicSchool
 
         public bool IsValid(JournalEntry entry)
         {
-            //if (!entry.Teacher.TeachedSubjects.Contains(entry.Subject))
-            //    return false;
-            //// ???
-            return true;
+            try
+            {
+                Subject sub;
+                return DataManager.DStorage.Id_Subject_Map.TryGetValue(entry.TeacherId, out sub) && sub == entry.Subject;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

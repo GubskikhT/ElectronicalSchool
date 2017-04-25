@@ -88,7 +88,9 @@
                 <Label x:Name="PositionLabel" Content="Position" HorizontalAlignment="Left" Margin="10,217,0,0" VerticalAlignment="Top" Height="25" Width="93"/>
                 <ComboBox x:Name="PositionComboBox" Margin="109,217,8.333,0" VerticalAlignment="Top" Height="25" SelectionChanged="PositionComboBox_SelectionChanged"  SelectedIndex="{Binding PositionIndex, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" Style="{StaticResource CustomComboBoxStyle}"/>
                 <Label x:Name="SubjectLabel" Content="Subject" HorizontalAlignment="Left" Margin="10,247,0,0" VerticalAlignment="Top" Height="25" Width="93"/>
+                <Label x:Name="GuestLabel" Content="Watching" HorizontalAlignment="Left" Margin="10,247,0,0" VerticalAlignment="Top" Height="25" Width="93"/>
                 <ComboBox x:Name="SubjectComboBox" Margin="109,247,8.333,0" VerticalAlignment="Top" Height="25" SelectedIndex="{Binding SubjectIndex, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" Style="{StaticResource CustomComboBoxStyle}"/>
+                <ComboBox x:Name="GuestComboBox" Margin="109,247,8.333,0" VerticalAlignment="Top" Height="25" SelectedIndex="{Binding StudentIndex, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" ItemsSource="{Binding StudentList}" Style="{StaticResource CustomComboBoxStyle}"/>
             </Grid>
         </GroupBox>
         <Button x:Name="LogoutButton" Content="Logout" Margin="10,0,10,9.556" Click="LogoutButton_Click" Height="25" VerticalAlignment="Bottom"/>
