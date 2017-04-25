@@ -33,6 +33,7 @@ namespace ElectronicSchool
             var teacherId = DataManager.DStorage.Login_Id_Map[credits.Username];
             this.teacher = DataManager.DStorage.Id_Person_Map[teacherId];
             this.subject = DataManager.DStorage.Id_Subject_Map[teacherId];
+            TeacherLabel.Content = "Teacher [" + teacher.ToShortString() + "]";
         }
 
         private void InitializeObservable()

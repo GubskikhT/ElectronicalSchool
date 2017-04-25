@@ -11,11 +11,11 @@
         <GroupBox x:Name="groupBox" Header="Login" Margin="19,32,29,55">
             <Grid>
                 <Button x:Name="loginButton" Content="Login" Margin="0,0,9.667,10.111" Click="loginButton_Click" HorizontalAlignment="Right" Width="79" Height="25" VerticalAlignment="Bottom"/>
-                <TextBox x:Name="usernameTextBox" Height="23" Margin="91,49,9.667,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="teacher"/>
+                <TextBox x:Name="usernameTextBox" Height="23" Margin="91,49,9.667,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="admin"/>
                 <Label x:Name="label" Content="username:" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Width="76"/>
                 <Label x:Name="label1" Content="password:" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="76"/>
                 <Label x:Name="textLabel" Content="Please, enter your credentials." Height="38" Margin="10,10,9.667,0" VerticalAlignment="Top"/>
-                <PasswordBox x:Name="passwordBox" Margin="91,77,9.667,0" VerticalAlignment="Top" Height="23" Password="teacher"/>
+                <PasswordBox x:Name="passwordBox" Margin="91,77,9.667,0" VerticalAlignment="Top" Height="23" Password="admin"/>
             </Grid>
         </GroupBox>
     </Grid>

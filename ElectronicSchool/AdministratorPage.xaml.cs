@@ -23,6 +23,9 @@ namespace ElectronicSchool
             this.credits = credits;
             InitializeComponent();
             InitializePersonList();
+            var id = DataManager.DStorage.Login_Id_Map[credits.Username];
+            var person = DataManager.DStorage.Id_Person_Map[id];
+            AdminLabel.Content = "Administrator [" + person.ToShortString() + "]";
             avm = new AdministrativeViewModel(_personList);
             DataContext = avm;
             PositionComboBox.ItemsSource = Enum.GetValues(typeof(Position));

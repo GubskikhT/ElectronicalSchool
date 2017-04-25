@@ -5,12 +5,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ElectronicSchool"
       mc:Ignorable="d"
-      Title="GuestPage" Height="292.889" Width="278.667">
+      Title="GuestPage" d:DesignHeight="300" d:DesignWidth="300">
 
     <Grid>
         <Button x:Name="LogoutButton" Content="Logout" Margin="10,0,9.556,9.667" Click="LogoutButton_Click" Height="20" VerticalAlignment="Bottom"/>
-        <Label x:Name="label" Content="Marks" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <DataGrid x:Name="dataGrid" Margin="10,41,9.556,34.667"/>
-
+        <Label x:Name="MarkLabel" Content="Marks" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="MarkGrid" Margin="10, 41, 10, 35" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*"
+                  CanUserResizeColumns="True">
+        </DataGrid>
     </Grid>
 </Page>
